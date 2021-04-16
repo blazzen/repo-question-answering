@@ -1,5 +1,6 @@
-import json
+import os
 
+from cdqa.utils.download import download_model
 from flask import Flask, render_template, request, jsonify
 
 from pipeline_runner import PipelineRunner
@@ -12,6 +13,13 @@ print("Starting the application")
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
+print("Checking the model existence")
+if os.path.isfile(DEFAULT_MODEL):
+    print(f"Found model: {DEFAULT_MODEL}")
+else:
+    print(f"Downloading model: {DEFAULT_MODEL}")
+    download_model(model='bert-squad_1.1', dir='./models')
 
 print("Initializing the pipeline...")
 
