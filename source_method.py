@@ -5,13 +5,17 @@ METHOD_FULL_NAME_SEPARATOR = "::"
 
 
 class SourceMethod(SourceObject):
-    def __init__(self, name, is_abstract, surrounding_class):
+    def __init__(self, name, body, surrounding_class):
         super().__init__(name)
-        self.is_abstract = is_abstract
+        self.body = body
         self.params = []
         self.surrounding_class = surrounding_class
         self.initial_commit = None
         self.last_modification_commit = None
+
+    @property
+    def is_abstract(self):
+        return self.body is None
 
     def to_printable_dict(self):
         return {

@@ -5,8 +5,8 @@ MAIN_METHOD_NAME = "main"
 
 
 class MainMethod(SourceMethod):
-    def __init__(self, name, is_abstract, surrounding_class):
-        super().__init__(name, is_abstract, surrounding_class)
+    def __init__(self, name, body, surrounding_class):
+        super().__init__(name, body, surrounding_class)
 
     @property
     def purpose(self):

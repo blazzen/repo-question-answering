@@ -33,7 +33,7 @@ class SourceFile(SourceObject):
         tree = javalang.parse.parse(source_code)
 
         for path, node in tree.filter(javalang.tree.MethodDeclaration):
-            src_method = MethodFactory(node.name, node.body is None, self).resolve()
+            src_method = MethodFactory(node.name, node.body, self).resolve()
 
             for param in node.parameters:
                 src_method.add_param(SourceMethodParam(param))
