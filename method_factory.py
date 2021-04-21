@@ -3,9 +3,10 @@ from source_method import SourceMethod
 
 
 class MethodFactory:
-    def __init__(self, name, body, surrounding_class):
+    def __init__(self, name, body, invocations, surrounding_class):
         self.name = name
         self.body = body
+        self.invocations = invocations
         self.surrounding_class = surrounding_class
 
     def resolve(self):
@@ -13,7 +14,7 @@ class MethodFactory:
             method = MainMethod
         else:
             method = SourceMethod
-        return method(self.name, self.body, self.surrounding_class)
+        return method(self.name, self.body, self.invocations, self.surrounding_class)
 
     @staticmethod
     def is_main(name):

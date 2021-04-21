@@ -14,7 +14,7 @@ class SourceParagraphsTransformer:
         paragraph = prediction["paragraph"]
         if str.startswith(paragraph, METHOD_PARAGRAPH_START):
             # todo: re-use constants
-            groups = re.search("\"(.+?)\" was implemented by (.+?)\\. .+ for (.+?)\\.", paragraph)
+            groups = re.search("\"(.+?)\" was implemented by (.+?)\\. .+? for (.+?)\\.", paragraph)
             method_name = groups.group(1)
             author = groups.group(2)
             file_purpose = groups.group(3)
@@ -40,9 +40,19 @@ class SourceParagraphsTransformer:
 
     @staticmethod
     def __file_to_paragraphs(src_file):
-        return [f"{METHOD_PARAGRAPH_START} \"{x.name}\" was implemented by {x.initial_commit.author.name}. " +
-                f"Its purpose is {x.purpose} for {src_file.purpose}. " +
-                f"The method was created with message: \"{x.initial_commit.msg}\". " +
-                f"The method was created on {datetime_str(x.initial_commit.committer_date)}."
+        return [SourceParagraphsTransformer.__build_paragraph_str(file=src_file, method=x)
                 for x in src_file.methods
                 if not x.is_abstract]
+
+    @staticmethod
+    def __build_paragraph_str(file, method):
+        author = f"{METHOD_PARAGRAPH_START} \"{method.name}\" was implemented by {method.initial_commit.author.name}."
+        purpose = f"Its purpose is {method.purpose} for {file.purpose}."
+        commit_msg = f"The method was created with message: \"{method.initial_commit.msg}\"."
+        commit_date = f"The method was created on {datetime_str(method.initial_commit.committer_date)}."
+
+        tokens = ""
+        if method.has_invocations():
+            tokens = f"The method tokens are: {method.tokenize()}."
+
+        return " ".join([author, purpose, commit_msg, commit_date, tokens])
