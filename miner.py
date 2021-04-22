@@ -67,10 +67,10 @@ class Miner:
                 if method.is_abstract:
                     continue
 
-                initial_commit = git_data.methods_initial_commits[method.get_full_name()]
+                initial_commit = git_data.methods_initial_commits[method.name_with_class]
                 method.enrich_with_initial_commit_data(initial_commit)
 
-                last_modification_commit = git_data.methods_last_modification_commits[method.get_full_name()]
+                last_modification_commit = git_data.methods_last_modification_commits[method.name_with_class]
                 method.enrich_with_last_modification_commit_data(last_modification_commit)
 
     @staticmethod

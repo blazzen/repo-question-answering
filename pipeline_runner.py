@@ -20,5 +20,5 @@ class PipelineRunner:
         predictions = self.cdqa_pipeline.predict(query, return_all_preds=True)
         result_transformer = SourceParagraphsTransformer(self.repository_miner.files)
         for prediction in predictions:
-            prediction[SRC_OBJ_ATTRIBUTE] = result_transformer.from_prediction(prediction).get_full_name()
+            prediction[SRC_OBJ_ATTRIBUTE] = result_transformer.from_prediction(prediction).full_name
         return predictions

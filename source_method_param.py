@@ -8,7 +8,7 @@ class SourceMethodParam(SourceObject):
 
     @staticmethod
     def resolve_param_type(param):
-        resolved_type = param.type.name
+        resolved_type = param.type.name + "[]" * len(param.type.dimensions)
 
         if hasattr(param.type, "arguments") and param.type.arguments is not None:
             resolved_type += "<" + ", ".join(

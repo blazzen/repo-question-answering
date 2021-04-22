@@ -27,7 +27,7 @@ class SourceMethod(SourceObject):
     def to_printable_dict(self):
         return {
             "Name": self.name,
-            "Signature": self.get_signature(),
+            "Signature": self.signature,
             "Class": self.surrounding_class.name,
             "Abstract?": self.is_abstract,
             "Created by (name)":
@@ -51,14 +51,20 @@ class SourceMethod(SourceObject):
             "Tokens": self.tokenize()
         }
 
-    def add_param(self, param):
-        self.params.append(param)
-
-    def get_signature(self):
+    @property
+    def signature(self):
         return self.name + "(" + ", ".join([x.type + " " + x.name for x in self.params]) + ")"
 
-    def get_full_name(self):
+    @property
+    def name_with_class(self):
         return METHOD_FULL_NAME_SEPARATOR.join([self.surrounding_class.name, self.name])
+
+    @property
+    def full_name(self):
+        return METHOD_FULL_NAME_SEPARATOR.join([self.surrounding_class.name, self.signature])
+
+    def add_param(self, param):
+        self.params.append(param)
 
     def enrich_with_initial_commit_data(self, commit):
         self.initial_commit = commit
