@@ -5,9 +5,10 @@ METHOD_FULL_NAME_SEPARATOR = "::"
 
 
 class SourceMethod(SourceObject):
-    def __init__(self, name, body, invocations, surrounding_class):
+    def __init__(self, name, body, line, invocations, surrounding_class):
         super().__init__(name)
         self.body = body
+        self.line = line
         self.invocations = invocations
         self.params = []
         self.surrounding_class = surrounding_class

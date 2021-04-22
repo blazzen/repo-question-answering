@@ -29,3 +29,7 @@ class Prediction:
     @property
     def source_file_path(self):
         return self.raw_prediction["src_obj"].surrounding_class.path
+
+    @property
+    def source_file_line(self):
+        return self.raw_prediction["src_obj"].line

@@ -37,6 +37,7 @@ class SourceFile(SourceObject):
             src_method = MethodFactory(
                 name=node.name,
                 body=node.body,
+                line=node.position[0] // 2 + 1,
                 invocations=invocations,
                 surrounding_class=self
             ).resolve()
