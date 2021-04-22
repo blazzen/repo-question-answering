@@ -24,4 +24,8 @@ class Prediction:
 
     @property
     def source_object(self):
-        return self.raw_prediction["src_obj"]
+        return self.raw_prediction["src_obj"].full_name
+
+    @property
+    def source_file_path(self):
+        return self.raw_prediction["src_obj"].surrounding_class.path
