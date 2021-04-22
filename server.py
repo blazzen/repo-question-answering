@@ -44,4 +44,4 @@ def process_query():
     print("Finished prediction")
 
     predictions = [Prediction(x) for x in raw_predictions]
-    return render_template("main_with_answers.html", predictions=predictions)
+    return render_template("main_with_answers.html", predictions=predictions, answered_question=query)
