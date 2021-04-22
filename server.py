@@ -1,9 +1,10 @@
 import os
 
 from cdqa.utils.download import download_model
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 
 from pipeline_runner import PipelineRunner
+from prediction import Prediction
 
 REPO_DIR = "/Users/blazzen/Documents/Development/razdolbai-chat"
 SRC_DIR_SUFFIX = "src/main/java/com/razdolbai"
@@ -39,7 +40,8 @@ def process_query():
     print(f"Got query: {query}")
 
     print("Predicting...")
-    predictions = pipeline_runner.query(query)
+    raw_predictions = pipeline_runner.query(query)
     print("Finished prediction")
 
-    return jsonify(predictions)
+    predictions = [Prediction(x) for x in raw_predictions]
+    return render_template("main_with_answers.html", predictions=predictions)

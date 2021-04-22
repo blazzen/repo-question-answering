@@ -1,7 +1,7 @@
 import re
 
 from source_file import SourceFile
-from util import datetime_str
+from util import date_str
 
 METHOD_PARAGRAPH_START = "Method"
 
@@ -49,7 +49,7 @@ class SourceParagraphsTransformer:
         author = f"{METHOD_PARAGRAPH_START} \"{method.name}\" was implemented by {method.initial_commit.author.name}."
         purpose = f"Its purpose is {method.purpose} for {file.purpose}."
         commit_msg = f"The method was created with message: \"{method.initial_commit.msg}\"."
-        commit_date = f"The method was created on {datetime_str(method.initial_commit.committer_date)}."
+        commit_date = f"The method was created on {date_str(method.initial_commit.committer_date)}."
 
         tokens = ""
         if method.has_invocations():

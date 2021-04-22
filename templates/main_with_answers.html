@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repository Question answering</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+<div class="bodywrapper" align="center">
+    <h2>Please, enter your question below:</h2>
+    <form method="POST">
+        <input type="text" name="text">
+        <input type="submit">
+    </form>
+    <div class="predictions">
+        {% for prediction in predictions %}
+        <table>
+            <tr>
+                <th colspan="2">Prediction {{ predictions.index(prediction) + 1 }}</th>
+            </tr>
+            <tr>
+                <th>Exact answer</th>
+                <td>{{ prediction.answer }}</td>
+            </tr>
+            <tr>
+                <th>Source object</th>
+                <td>{{ prediction.source_object }}</td>
+            </tr>
+            <tr>
+                <th>Probability</th>
+                <td>{{ prediction.probability }}</td>
+            </tr>
+            <tr>
+                <th>Retriever score</th>
+                <td>{{ prediction.retriever_score }}</td>
+            </tr>
+            <tr>
+                <th>Total score</th>
+                <td>{{ prediction.final_score }}</td>
+            </tr>
+            <tr>
+                <th>Describing paragraph</th>
+                <td>{{ prediction.paragraph }}</td>
+            </tr>
+        </table>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

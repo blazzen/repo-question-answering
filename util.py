@@ -4,6 +4,7 @@ import pandas as pd
 
 DEFAULT_OUTPUT_VALUE = "-"
 DATE_TIME_FORMAT = "%B %d, %Y %H:%M:%S"
+DATE_FORMAT = "%B %d, %Y"
 
 
 def camel_str_to_sentence(str, lowercase=False):
@@ -25,3 +26,7 @@ def to_df(paragraph_like_view):
 
 def datetime_str(datetime_obj):
     return datetime_obj.strftime(DATE_TIME_FORMAT)
+
+
+def date_str(datetime_obj):
+    return datetime_obj.strftime(DATE_FORMAT)

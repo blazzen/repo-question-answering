@@ -1,0 +1,30 @@
+input[type=text] {
+    width: 70%;
+    font-size: 24px;
+}
+
+input[type=submit] {
+    font-size: 24px;
+}
+
+table {
+    margin: 2.5em;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 2px solid black;
+    padding: 0.5em;
+}
+
+td {
+    padding: 0.5em;
+}
+
+.predictions {
+    margin: 2.5em;
+}
+
+.bodywrapper {
+    font-family: Verdana, Arial, sans-serif;
+}
