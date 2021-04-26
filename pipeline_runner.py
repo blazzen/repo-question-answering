@@ -1,3 +1,5 @@
+from abc import abstractmethod
+
 from cdqa.pipeline import QAPipeline
 
 import miner
@@ -14,7 +16,6 @@ class PipelineRunner:
 
         print("Fitting the pipeline")
         self.cdqa_pipeline = QAPipeline(reader=model, min_df=0.0, max_df=1.0, top_n=5)
-        self.cdqa_pipeline.fit_retriever(self.data)
 
     def query(self, query):
         predictions = self.cdqa_pipeline.predict(query, return_all_preds=True)
@@ -22,3 +23,7 @@ class PipelineRunner:
         for prediction in predictions:
             prediction[SRC_OBJ_ATTRIBUTE] = result_transformer.from_prediction(prediction)
         return predictions
+
+    @abstractmethod
+    def fit_retriever(self):
+        pass

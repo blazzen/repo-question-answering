@@ -1,9 +1,7 @@
-import os
-
-from cdqa.utils.download import download_model
 from flask import Flask, render_template, request
 
-from pipeline_runner import PipelineRunner
+from bm25_pipeline_runner import BM25PipelineRunner
+from model_util import download_bert_model
 from prediction import Prediction
 
 REPO_DIR = "/Users/blazzen/Documents/Development/razdolbai-chat"
@@ -15,17 +13,11 @@ print("Starting the application")
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
-print("Checking BERT model existence")
-if os.path.isfile(BERT_MODEL):
-    print(f"Found model: {BERT_MODEL}")
-else:
-    print(f"Downloading model: {BERT_MODEL}")
-    download_model(model='bert-squad_1.1', dir='./models')
-print("Finished checking BERT model")
+download_bert_model()
 
 print("Initializing the pipeline...")
 
-pipeline_runner = PipelineRunner(REPO_DIR, SRC_DIR_SUFFIX, BERT_MODEL)
+pipeline_runner = BM25PipelineRunner(REPO_DIR, SRC_DIR_SUFFIX, BERT_MODEL)
 
 print("Finished pipeline initialization")
 

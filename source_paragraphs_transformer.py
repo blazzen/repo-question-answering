@@ -8,7 +8,7 @@ METHOD_PARAGRAPH_START = "Method"
 
 class SourceParagraphsTransformer:
     def __init__(self, src_files):
-        self.files_by_purpose = {x.purpose: x for x in src_files}
+        self.files_by_purpose = {x.purpose: x for x in src_files if not x.is_abstract}
 
     def from_prediction(self, prediction):
         paragraph = prediction["paragraph"]
