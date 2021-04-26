@@ -24,7 +24,7 @@ class FasttextPipelineRunner(PipelineRunner):
         self.__fit_retriever()
 
     def __fit_retriever(self):
-        self.flattened_paragraphs = flatten_list(self.prediction_data)
+        self.flattened_paragraphs = flatten_list([x[1] for x in self.prediction_data])
         self.paragraphs_embedding = np.concatenate(
             [self.vectorizer.get_sentence_vector(x) for x in self.flattened_paragraphs]
         )

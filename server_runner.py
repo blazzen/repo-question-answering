@@ -4,8 +4,6 @@ from util.model_util import BERT_MODEL_PATH
 REPO_DIR = "../razdolbai-chat"
 SRC_DIR_SUFFIX = "src/main/java/com/razdolbai"
 
-print("Starting the application")
-
 server = Server(
     repo_dir=REPO_DIR,
     src_dir_suffix=SRC_DIR_SUFFIX,
