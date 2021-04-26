@@ -5,7 +5,7 @@ import numpy as np
 from cdqa.utils.converters import generate_squad_examples
 from sklearn.metrics.pairwise import cosine_similarity
 
-from fast_text_vectorizer import FasttextVectorizer
+from pipeline_runner.fasttext_vectorizer import FasttextVectorizer
 from pipeline_runner.pipeline_runner import PipelineRunner
 from util.model_util import download_fasttext_model, FASTTEXT_MODEL_PATH
 from util.util import flatten_list, to_df
