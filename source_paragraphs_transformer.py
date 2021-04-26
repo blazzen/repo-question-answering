@@ -8,24 +8,25 @@ METHOD_PARAGRAPH_START = "Method"
 
 class SourceParagraphsTransformer:
     def __init__(self, src_files):
-        self.files_by_purpose = {x.purpose: x for x in src_files if not x.is_abstract}
+        self.methods_by_paragraph = {
+            SourceParagraphsTransformer.build_paragraph_str(file=x.surrounding_class, method=x): x
+            for x in [
+                m for sublist in [
+                    f.methods
+                    for f in src_files
+                    if not f.is_abstract
+                ]
+                for m in sublist
+            ]
+        }
 
     def from_prediction(self, prediction):
         paragraph = prediction["paragraph"]
         if str.startswith(paragraph, METHOD_PARAGRAPH_START):
-            # todo: re-use constants
-            groups = re.search("\"(.+?)\" was implemented by (.+?)\\. .+? for (.+?)\\.", paragraph)
-            method_name = groups.group(1)
-            author = groups.group(2)
-            file_purpose = groups.group(3)
-            # todo: improve matching
-            src_file = self.files_by_purpose[file_purpose]
-            for method in src_file.methods:
-                if method_name == method.name and method.initial_commit.author.name == author:
-                    return method
+            if paragraph in self.methods_by_paragraph:
+                return self.methods_by_paragraph[paragraph]
             return None
-        else:
-            raise ValueError(f"Unknown paragraph type '{paragraph}'")
+        raise ValueError(f"Unknown paragraph type '{paragraph}'")
 
     @staticmethod
     def to_paragraph_like_view(files):
