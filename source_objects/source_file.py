@@ -2,10 +2,10 @@ import os
 
 import javalang
 
-from method_factory import MethodFactory
-from source_method_param import SourceMethodParam
-from source_object import SourceObject
-from util import get_pure_filename
+from source_objects.method_factory import MethodFactory
+from source_objects.source_method_param import SourceMethodParam
+from source_objects.source_object import SourceObject
+from util.util import get_pure_filename
 
 
 class SourceFile(SourceObject):

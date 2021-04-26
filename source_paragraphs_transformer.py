@@ -1,7 +1,7 @@
 import re
 
-from source_file import SourceFile
-from util import date_str
+from source_objects.source_file import SourceFile
+from util.util import date_str
 
 METHOD_PARAGRAPH_START = "Method"
 

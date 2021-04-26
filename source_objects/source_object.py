@@ -1,4 +1,4 @@
-from util import camel_str_to_sentence
+from util.util import camel_str_to_sentence
 
 
 class SourceObject:

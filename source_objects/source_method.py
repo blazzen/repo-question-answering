@@ -1,5 +1,5 @@
-from source_object import SourceObject
-from util import DEFAULT_OUTPUT_VALUE, datetime_str, camel_str_to_sentence
+from source_objects.source_object import SourceObject
+from util.util import DEFAULT_OUTPUT_VALUE, datetime_str, camel_str_to_sentence
 
 METHOD_FULL_NAME_SEPARATOR = "::"
 

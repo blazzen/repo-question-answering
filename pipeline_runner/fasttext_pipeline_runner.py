@@ -1,8 +1,8 @@
 import fasttext
 
 from fast_text_vectorizer import FasttextVectorizer
-from model_util import download_fasttext_model, FASTTEXT_MODEL_PATH
-from pipeline_runner import PipelineRunner
+from util.model_util import download_fasttext_model, FASTTEXT_MODEL_PATH
+from pipeline_runner.pipeline_runner import PipelineRunner
 
 
 class FasttextPipelineRunner(PipelineRunner):

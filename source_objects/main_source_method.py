@@ -1,4 +1,4 @@
-from source_method import SourceMethod
+from source_objects.source_method import SourceMethod
 
 MAIN_METHOD_PURPOSE_PREFIX = "running "
 MAIN_METHOD_NAME = "main"

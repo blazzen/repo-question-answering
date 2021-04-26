@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 
-from bm25_pipeline_runner import BM25PipelineRunner
-from model_util import download_bert_model
+from util.model_util import download_bert_model
+from pipeline_runner.bm25_pipeline_runner import BM25PipelineRunner
 from prediction import Prediction
 
 REPO_DIR = "/Users/blazzen/Documents/Development/razdolbai-chat"

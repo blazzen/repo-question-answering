@@ -2,9 +2,9 @@ import os
 
 from pydriller import RepositoryMining
 
-from source_file import SourceFile
-from source_method import METHOD_FULL_NAME_SEPARATOR
-from util import get_pure_filename, to_df
+from source_objects.source_file import SourceFile
+from source_objects.source_method import METHOD_FULL_NAME_SEPARATOR
+from util.util import get_pure_filename, to_df
 from source_paragraphs_transformer import SourceParagraphsTransformer
 
 SRC_FILE_SUFFIX = ".java"

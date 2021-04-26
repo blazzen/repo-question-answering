@@ -1,4 +1,4 @@
-from pipeline_runner import PipelineRunner
+from pipeline_runner.pipeline_runner import PipelineRunner
 
 
 class BM25PipelineRunner(PipelineRunner):

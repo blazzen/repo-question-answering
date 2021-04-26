@@ -1,5 +1,5 @@
-from main_source_method import MainMethod, MAIN_METHOD_NAME
-from source_method import SourceMethod
+from source_objects.main_source_method import MainMethod, MAIN_METHOD_NAME
+from source_objects.source_method import SourceMethod
 
 
 class MethodFactory:

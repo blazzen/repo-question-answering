@@ -1,4 +1,4 @@
-from source_object import SourceObject
+from source_objects.source_object import SourceObject
 
 
 class SourceMethodParam(SourceObject):
