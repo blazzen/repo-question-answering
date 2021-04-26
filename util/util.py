@@ -30,3 +30,7 @@ def datetime_str(datetime_obj):
 
 def date_str(datetime_obj):
     return datetime_obj.strftime(DATE_FORMAT)
+
+
+def flatten_list(li):
+    return [x for sublist in li for x in sublist]

@@ -1,7 +1,5 @@
-import re
-
 from source_objects.source_file import SourceFile
-from util.util import date_str
+from util.util import date_str, flatten_list
 
 METHOD_PARAGRAPH_START = "Method"
 
@@ -10,14 +8,11 @@ class SourceParagraphsTransformer:
     def __init__(self, src_files):
         self.methods_by_paragraph = {
             SourceParagraphsTransformer.build_paragraph_str(file=x.surrounding_class, method=x): x
-            for x in [
-                m for sublist in [
-                    f.methods
-                    for f in src_files
-                    if not f.is_abstract
-                ]
-                for m in sublist
-            ]
+            for x in flatten_list([
+                f.methods
+                for f in src_files
+                if not f.is_abstract
+            ])
         }
 
     def from_prediction(self, prediction):

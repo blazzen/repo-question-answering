@@ -7,6 +7,8 @@ from prediction import Prediction
 REPO_DIR = "/Users/blazzen/Documents/Development/razdolbai-chat"
 SRC_DIR_SUFFIX = "src/main/java/com/razdolbai"
 BERT_MODEL = "models/bert_qa.joblib"
+TOP_N = 5
+RETRIEVER_SCORE_WEIGHT = 1.0
 
 print("Starting the application")
 
@@ -17,7 +19,7 @@ download_bert_model()
 
 print("Initializing the pipeline...")
 
-pipeline_runner = BM25PipelineRunner(REPO_DIR, SRC_DIR_SUFFIX, BERT_MODEL)
+pipeline_runner = BM25PipelineRunner(REPO_DIR, SRC_DIR_SUFFIX, BERT_MODEL, top_n=TOP_N, retriever_score_weight=1.0)
 
 print("Finished pipeline initialization")
 
