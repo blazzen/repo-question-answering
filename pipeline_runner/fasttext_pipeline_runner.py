@@ -19,8 +19,8 @@ class FasttextPipelineRunner(PipelineRunner):
         download_fasttext_model()
 
         print("Fitting the pipeline")
-        self.vectorizer = FasttextVectorizer(self.model)
         self.model = fasttext.load_model(FASTTEXT_MODEL_PATH)
+        self.vectorizer = FasttextVectorizer(self.model)
         self.__fit_retriever()
 
     def __fit_retriever(self):
