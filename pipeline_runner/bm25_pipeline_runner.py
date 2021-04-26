@@ -1,4 +1,5 @@
 from pipeline_runner.pipeline_runner import PipelineRunner
+from util.util import to_df
 
 
 class BM25PipelineRunner(PipelineRunner):
@@ -10,4 +11,5 @@ class BM25PipelineRunner(PipelineRunner):
         self.fit_retriever()
 
     def fit_retriever(self):
-        self.cdqa_pipeline.fit_retriever(self.data)
+        transformed_data = [[f[0], [m[0] for m in f[1]]] for f in self.data]
+        self.cdqa_pipeline.fit_retriever(to_df(transformed_data))

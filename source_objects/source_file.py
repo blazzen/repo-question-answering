@@ -18,7 +18,7 @@ class SourceFile(SourceObject):
         super().__init__(pure_filename)
 
         source_code = self.read_file_source_code(path)
-        self.__parse_source_code(source_code)
+        self.parse_source_code(source_code)
 
     def to_printable_dict(self):
         return {
@@ -29,7 +29,7 @@ class SourceFile(SourceObject):
             "Methods": [x.to_printable_dict() for x in self.methods]
         }
 
-    def __parse_source_code(self, source_code):
+    def parse_source_code(self, source_code):
         tree = javalang.parse.parse(source_code)
 
         for path, node in tree.filter(javalang.tree.MethodDeclaration):
@@ -45,9 +45,9 @@ class SourceFile(SourceObject):
             for param in node.parameters:
                 src_method.add_param(SourceMethodParam(param))
 
-            self.__add_method(src_method)
+            self.add_method(src_method)
 
-    def __add_method(self, method):
+    def add_method(self, method):
         self.methods.append(method)
 
         if not method.is_abstract:

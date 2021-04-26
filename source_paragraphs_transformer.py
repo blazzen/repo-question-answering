@@ -34,18 +34,18 @@ class SourceParagraphsTransformer:
     @staticmethod
     def to_paragraphs(src_obj):
         if isinstance(src_obj, SourceFile):
-            return SourceParagraphsTransformer.__file_to_paragraphs(src_obj)
+            return SourceParagraphsTransformer.file_to_paragraphs(src_obj)
         else:
             raise ValueError(f"Unknown source object type {type(src_obj)}")
 
     @staticmethod
-    def __file_to_paragraphs(src_file):
-        return [SourceParagraphsTransformer.__build_paragraph_str(file=src_file, method=x)
+    def file_to_paragraphs(src_file):
+        return [[SourceParagraphsTransformer.build_paragraph_str(file=src_file, method=x), x]
                 for x in src_file.methods
                 if not x.is_abstract]
 
     @staticmethod
-    def __build_paragraph_str(file, method):
+    def build_paragraph_str(file, method):
         author = f"{METHOD_PARAGRAPH_START} \"{method.name}\" was implemented by {method.initial_commit.author.name}."
         purpose = f"Its purpose is {method.purpose} for {file.purpose}."
         commit_msg = f"The method was created with message: \"{method.initial_commit.msg}\"."

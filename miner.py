@@ -4,8 +4,8 @@ from pydriller import RepositoryMining
 
 from source_objects.source_file import SourceFile
 from source_objects.source_method import METHOD_FULL_NAME_SEPARATOR
-from util.util import get_pure_filename, to_df
 from source_paragraphs_transformer import SourceParagraphsTransformer
+from util.util import get_pure_filename
 
 SRC_FILE_SUFFIX = ".java"
 
@@ -28,7 +28,7 @@ class Miner:
         git_data = self.mine_git_repository_data()
         self.connect_mined_data(files, git_data)
         self.files = files
-        return to_df(SourceParagraphsTransformer.to_paragraph_like_view(files))
+        return SourceParagraphsTransformer.to_paragraph_like_view(files)
 
     def mine_current_repository_state(self):
         files = []
