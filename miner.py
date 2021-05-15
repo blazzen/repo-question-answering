@@ -67,7 +67,11 @@ class Miner:
                 if method.is_abstract:
                     continue
 
-                initial_commit = git_data.methods_initial_commits[method.name_with_class]
+                if method.name_with_class in git_data.methods_initial_commits:
+                    initial_commit = git_data.methods_initial_commits[method.name_with_class]
+                else:
+                    print(f"Couldn't find initial commit for {method.name_with_class}")
+                    continue
                 method.enrich_with_initial_commit_data(initial_commit)
 
                 last_modification_commit = git_data.methods_last_modification_commits[method.name_with_class]

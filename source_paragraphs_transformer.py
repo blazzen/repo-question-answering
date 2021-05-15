@@ -13,6 +13,7 @@ class SourceParagraphsTransformer:
                 for f in src_files
                 if not f.is_abstract
             ])
+            if x.initial_commit is not None
         }
 
     def from_prediction(self, prediction):
@@ -38,7 +39,7 @@ class SourceParagraphsTransformer:
     def file_to_paragraphs(src_file):
         return [[SourceParagraphsTransformer.build_paragraph_str(file=src_file, method=x), x]
                 for x in src_file.methods
-                if not x.is_abstract]
+                if not x.is_abstract and x.initial_commit is not None]
 
     @staticmethod
     def build_paragraph_str(file, method):
